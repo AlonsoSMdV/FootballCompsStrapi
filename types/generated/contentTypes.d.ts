@@ -683,6 +683,7 @@ export interface ApiLeagueLeague extends Schema.CollectionType {
     singularName: 'league';
     pluralName: 'leagues';
     displayName: 'League';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -694,6 +695,7 @@ export interface ApiLeagueLeague extends Schema.CollectionType {
       'oneToMany',
       'api::team.team'
     >;
+    logo: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

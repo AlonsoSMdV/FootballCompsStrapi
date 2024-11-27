@@ -4,7 +4,8 @@
   "info": {
     "singularName": "league",
     "pluralName": "leagues",
-    "displayName": "League"
+    "displayName": "League",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -19,6 +20,16 @@
       "relation": "oneToMany",
       "target": "api::team.team",
       "mappedBy": "league"
+    },
+    "logo": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }
