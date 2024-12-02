@@ -660,6 +660,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    usuario: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToOne',
+      'api::usuario.usuario'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -790,6 +795,44 @@ export interface ApiTeamTeam extends Schema.CollectionType {
   };
 }
 
+export interface ApiUsuarioUsuario extends Schema.CollectionType {
+  collectionName: 'usuarios';
+  info: {
+    singularName: 'usuario';
+    pluralName: 'usuarios';
+    displayName: 'usuario';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    username: Attribute.String;
+    email: Attribute.Email;
+    password: Attribute.Password;
+    userId: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::usuario.usuario',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -809,6 +852,7 @@ declare module '@strapi/types' {
       'api::league.league': ApiLeagueLeague;
       'api::player.player': ApiPlayerPlayer;
       'api::team.team': ApiTeamTeam;
+      'api::usuario.usuario': ApiUsuarioUsuario;
     }
   }
 }
